@@ -1,12 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
+import Campobase from "./Componentes/Campobase/Campobase";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { StyleSheet } from 'react-native';
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Cambiando aquí el texto y guardando, veo como se me actualiza en el móvil en tiempo real</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <View>
+        <Campobase/>    
+        <StatusBar style="auto" />
+      </View>
+    </SafeAreaProvider>
   );
 }
 
