@@ -8,6 +8,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Platform } from 'react-native';
 import Home from '../HomeComponent/HomeComponent';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import Contacto from '../ContactoComponent/Contacto';
+import QuienesSomos from '../QuienesSomosComponent/QuienesSomos';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -28,31 +30,12 @@ function HomeNavegador() {
         name="Etxea"
         component={Home}
         options={{
-          title: 'Campo Base',
+          title: 'Home',
         }}
       />
     </Stack.Navigator>
   );
 }
-
-function DrawerNavegador() {
-  return (
-    <Drawer.Navigator
-      initialRouteName=" Drawer"
-      screenOptions={{
-        headerShown: false,
-        drawerStyle: {
-          backgroundColor: '#c2d3da',
-        },
-      }}
-    >
-      <Drawer.Screen name="Home" component={HomeNavegador} />
-      <Drawer.Screen name="Calendario" component={CalendarioNavegador} />
-    </Drawer.Navigator>
-  );
-}
-
-
 
 
 function CalendarioNavegador() {
@@ -81,6 +64,72 @@ function CalendarioNavegador() {
         }}
       />
     </Stack.Navigator>
+  );
+}
+
+function ContactoNavegador() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Contacto"
+      screenOptions={{
+        headerMode: 'screen',
+        headerTintColor: '#fff',
+        headerStyle: { backgroundColor: '#015afc' },
+        headerTitleStyle: { color: '#fff' },
+      }}
+    >
+
+      <Stack.Screen
+        name="Etxea"
+        component={Contacto}
+        options={{
+          title: 'Contacto',
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+
+function QuienesSomosNavegador() {
+  return (
+    <Stack.Navigator
+      initialRouteName="Quiénes Somos"
+      screenOptions={{
+        headerMode: 'screen',
+        headerTintColor: '#fff',
+        headerStyle: { backgroundColor: '#015afc' },
+        headerTitleStyle: { color: '#fff' },
+      }}
+    >
+
+      <Stack.Screen
+        name="Etxea"
+        component={QuienesSomos}
+        options={{
+          title: 'Quiénes Somos',
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function DrawerNavegador() {
+  return (
+    <Drawer.Navigator
+      initialRouteName=" Drawer"
+      screenOptions={{
+        headerShown: false,
+        drawerStyle: {
+          backgroundColor: '#c2d3da',
+        },
+      }}
+    >
+      <Drawer.Screen name="Home" component={HomeNavegador} />
+      <Drawer.Screen name="Calendario" component={CalendarioNavegador} />
+      <Drawer.Screen name="Contacto" component={ContactoNavegador} />
+      <Drawer.Screen name="Quiénes Somos" component={QuienesSomosNavegador} />      
+    </Drawer.Navigator>
   );
 }
 
