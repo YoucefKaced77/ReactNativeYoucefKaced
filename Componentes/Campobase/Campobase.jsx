@@ -16,6 +16,8 @@ import { DrawerContentScrollView, DrawerItemList
 import { Icon } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DrawerActions } from '@react-navigation/native';
+import { colorGaztaroaClaro, colorGaztaroaOscuro } from '../../Comun/comun';
+
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -27,8 +29,8 @@ function HomeNavegador({navigation}) {
       screenOptions={{
         headerMode: 'screen',
         headerTintColor: '#fff',
-        headerStyle: { backgroundColor: '#015afc' },
-        headerTitleStyle: { color: '#fff' },
+        headerStyle: { backgroundColor: colorGaztaroaOscuro },
+        headerTitleStyle: { color: '#fff', alignItems: 'center', },
         headerLeft: () => (<Icon name="menu" size={28} color= 'white' onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer()) }/>),
       }}
     >
@@ -37,7 +39,7 @@ function HomeNavegador({navigation}) {
         name="Etxea"
         component={Home}
         options={{
-          title: 'Home',
+          title: 'Home', 
         }}
       />
     </Stack.Navigator>
@@ -52,7 +54,7 @@ function CalendarioNavegador({navigation}) {
       headerMode="float"
       screenOptions={{
         headerTintColor: '#fff',
-        headerStyle: { backgroundColor: '#015afc' },
+        headerStyle: { backgroundColor: colorGaztaroaOscuro },
         headerTitleStyle: { color: '#fff' },
       }}
     >
@@ -82,7 +84,7 @@ function ContactoNavegador({navigation}) {
       screenOptions={{
         headerMode: 'screen',
         headerTintColor: '#fff',
-        headerStyle: { backgroundColor: '#015afc' },
+        headerStyle: { backgroundColor: colorGaztaroaOscuro },
         headerTitleStyle: { color: '#fff' },
         headerLeft: () => (<Icon name="menu" size={28} color= 'white' onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer()) }/>),
       }}
@@ -107,7 +109,7 @@ function QuienesSomosNavegador({navigation}) {
       screenOptions={{
         headerMode: 'screen',
         headerTintColor: '#fff',
-        headerStyle: { backgroundColor: '#015afc' },
+        headerStyle: { backgroundColor: colorGaztaroaOscuro },
         headerTitleStyle: { color: '#fff' },
         headerLeft: () => (<Icon name="menu" size={28} color= 'white' onPress={ () => navigation.dispatch(DrawerActions.toggleDrawer()) }/>),
       }}
@@ -133,7 +135,7 @@ function CustomDrawerContent(props) {
             <Image source={require('../imagenes/logo.png')} style={styles.drawerImage} />
           </View>
           <View style={{flex: 2}}>
-            <Text style={styles.drawerHeaderText}> Gaztaroa</Text>
+            <Text style={styles.drawerHeaderText}>Gaztaroa</Text>
           </View>
         </View>
         <DrawerItemList {...props} />
@@ -151,7 +153,7 @@ function DrawerNavegador() {
       screenOptions={{
         headerShown: false,
         drawerStyle: {
-          backgroundColor: '#c2d3da',
+          backgroundColor: colorGaztaroaClaro,
         },
       }}
     >
@@ -212,7 +214,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   drawerHeader: {
-    backgroundColor: '#015afc',
+    backgroundColor: colorGaztaroaOscuro,
     height: 100,
     alignItems: 'center',
     justifyContent: 'center',

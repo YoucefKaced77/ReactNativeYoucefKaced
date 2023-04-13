@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { ListItem, Avatar } from '@rneui/themed';
 import { SafeAreaView, FlatList } from 'react-native';
 import { EXCURSIONES } from "../../Comun/excursiones"
+import { baseUrl } from '../../Comun/comun';
 
 class Calendario extends Component {
     constructor(props) {
@@ -19,12 +20,12 @@ class Calendario extends Component {
                 key={index}
                 onPress={() => navigate('DetalleExcursion', { excursionId: item.id })}
                 bottomDivider>
-                    <Avatar source={require('../imagenes/40Años.png')} />
+                    <Avatar source={{uri:baseUrl + item.imagen}} />
                     <ListItem.Content>
                         <ListItem.Title>{item.nombre}</ListItem.Title>
                         <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
                     </ListItem.Content>
-                </ListItem> 
+                </ListItem>  
             );
         };
 

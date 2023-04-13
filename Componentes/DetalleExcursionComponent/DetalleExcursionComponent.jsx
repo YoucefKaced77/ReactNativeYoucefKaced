@@ -6,6 +6,7 @@ import { StyleSheet } from 'react-native';
 import {COMENTARIOS} from "../../Comun/comentarios"
 import { ScrollView } from 'react-native';
 import { Icon } from '@rneui/themed';
+import { baseUrl } from '../../Comun/comun';
 
 const styles = StyleSheet.create({
     image: {
@@ -14,7 +15,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     title: {
-        color: 'chocolate',
+        color: 'white',
         padding: 10,
         fontSize: 20,
         position: 'absolute',
@@ -58,11 +59,12 @@ function RenderExcursion(props) {
     const excursion = props.excursion;
     
         if (excursion != null) {
+            console.log(baseUrl + excursion.imagen)
             return(
             <Card containerStyle={styles.card} >
                 <View style={styles.imageContainer}>
                     <Card.Image
-                    source={require('../imagenes/40Años.png')}
+                    source={{uri:baseUrl + excursion.imagen}}
                     style={styles.image}
                     ></Card.Image>
                     <Text style={styles.title}>{excursion.nombre}</Text>

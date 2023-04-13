@@ -6,6 +6,7 @@ import { CABECERAS } from '../../Comun/cabeceras';
 import { SafeAreaView, FlatList } from 'react-native';
 import { ListItem, Avatar } from '@rneui/themed';
 import { ACTIVIDADES } from '../../Comun/actividades';
+import { baseUrl } from '../../Comun/comun';
 
 
 function RenderQuienesSomos() {
@@ -49,7 +50,7 @@ class QuienesSomos extends Component {
                     <ListItem
                     key={index}
                     bottomDivider>
-                        <Avatar source={require('../imagenes/40Años.png')} />
+                        <Avatar source={{uri:baseUrl + item.imagen}} />
                         <ListItem.Content>
                             <ListItem.Title>{item.nombre}</ListItem.Title>
                             <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
