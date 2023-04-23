@@ -17,6 +17,9 @@ import { Icon } from '@rneui/themed';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { DrawerActions } from '@react-navigation/native';
 import { colorGaztaroaClaro, colorGaztaroaOscuro } from '../../Comun/comun';
+import { connect } from 'react-redux';
+import { fetchExcursiones, fetchComentarios, fetchCabeceras, fetchActividades } from '../../redux/ActionCreators';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -233,8 +236,32 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = state => {
+  return {
+  excursiones: state.excursiones,
+  comentarios: state.comentarios,
+  cabeceras: state.cabeceras,
+  actividades: state.actividades
+  }
+ }
+ const mapDispatchToProps = dispatch => ({
+  fetchExcursiones: () => dispatch(fetchExcursiones()),
+  fetchComentarios: () => dispatch(fetchComentarios()),
+  fetchCabeceras: () => dispatch(fetchCabeceras()),
+  fetchActividades: () => dispatch(fetchActividades()),
+ })
+ 
+
 
 class Campobase extends Component {
+
+  componentDidMount() {
+    this.props.fetchExcursiones();
+    this.props.fetchComentarios();
+    this.props.fetchCabeceras();
+    this.props.fetchActividades();
+  }   
+
   render() {
     return (
       <NavigationContainer>
@@ -248,4 +275,5 @@ class Campobase extends Component {
   }
 }
 
-export default Campobase;
+export default connect(mapStateToProps, mapDispatchToProps)(Campobase);
+

@@ -3,18 +3,22 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Campobase from './Componentes/Campobase/Campobase';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import { ConfigureStore } from './redux/configureStore';
+
+const store = ConfigureStore();
 
 export default function App() {
   return(
-  <SafeAreaProvider>
-    <View style={styles.container}>
+    <Provider store={store}>
+      <View style={styles.container}>
       <Campobase/>
       <StatusBar style="auto" />
-    </View>
-  </SafeAreaProvider>
+      </View>
+    </Provider>
   );
 }
-
+  
 const styles = StyleSheet.create({
   container: {
     flex: 1,

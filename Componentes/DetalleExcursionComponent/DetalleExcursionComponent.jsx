@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { Card } from '@rneui/themed';
-import { EXCURSIONES } from '../../Comun/excursiones';
 import { StyleSheet } from 'react-native';
-import {COMENTARIOS} from "../../Comun/comentarios"
 import { ScrollView } from 'react-native';
 import { Icon } from '@rneui/themed';
 import { baseUrl } from '../../Comun/comun';
+import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
     image: {
@@ -88,13 +87,20 @@ function RenderExcursion(props) {
         }
 }
 
+const mapStateToProps = state => {
+    return {
+        actividades: state.actividades,
+        excursiones: state.excursiones,
+        cabeceras: state.cabeceras,
+        comentarios: state.comentarios
+    }
+}
+
 class DetalleExcursion extends Component {
 
         constructor(props) {
             super(props);
             this.state = {
-                excursiones: EXCURSIONES,
-                comentarios:COMENTARIOS,
                 favoritos: []  
             };
         }
@@ -108,16 +114,16 @@ class DetalleExcursion extends Component {
             return(
                 <ScrollView>
                     <RenderExcursion
-                        excursion={this.state.excursiones[+excursionId]}
+                        excursion={this.props.excursiones.excursiones[+excursionId]}
                         favorita={this.state.favoritos.some(el => el === excursionId)}
                         onPress={() => this.marcarFavorito(excursionId)}
                     />
                     <RenderComentario
-                        comentarios={this.state.comentarios.filter((comentario) => comentario.excursionId === excursionId)}
+                        comentarios={this.props.comentarios.comentarios.filter((comentario) => comentario.excursionId === excursionId)}
                     />
                 </ScrollView>
             );
         }
 }
 
-export default DetalleExcursion;
+export default connect(mapStateToProps)(DetalleExcursion);

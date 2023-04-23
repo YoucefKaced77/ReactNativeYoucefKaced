@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, View } from 'react-native';
 import { Card } from '@rneui/themed';
-import { EXCURSIONES } from '../../Comun/excursiones';
-import { CABECERAS } from '../../Comun/cabeceras';
 import { SafeAreaView, FlatList } from 'react-native';
 import { ListItem, Avatar } from '@rneui/themed';
-import { ACTIVIDADES } from '../../Comun/actividades';
 import { baseUrl } from '../../Comun/comun';
+import { connect } from 'react-redux';
 
 
 function RenderQuienesSomos() {
 
     return(
         <Card>
-            <Card.Title>Un poco de historia</Card.Title>
+            <Card.Title>Un poco de historia</Card.Title>  
             <Card.Divider/>
             <Text style={{margin: 20}}>
             El nacimiento del club de montaña Gaztaroa se remonta a la 
@@ -33,18 +31,18 @@ function RenderQuienesSomos() {
 
 }
 
-class QuienesSomos extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            actividades: ACTIVIDADES
-        };
+const mapStateToProps = state => {
+    return {
+        actividades: state.actividades
     }
+}
+
+class QuienesSomos extends Component {
 
     render() {
         const { navigate } = this.props.navigation;    
         const renderItem = ({item, index}) => {
+            console.log({uri:baseUrl + item.imagen})
             return (
                 <Card>
                     <ListItem
@@ -54,7 +52,7 @@ class QuienesSomos extends Component {
                         <ListItem.Content>
                             <ListItem.Title>{item.nombre}</ListItem.Title>
                             <ListItem.Subtitle>{item.descripcion}</ListItem.Subtitle>
-                        </ListItem.Content>
+                        </ListItem.Content>   
                     </ListItem> 
                 </Card>
             );
@@ -63,7 +61,7 @@ class QuienesSomos extends Component {
             <SafeAreaView>
                 <RenderQuienesSomos/>
                 <FlatList 
-                    data={this.state.actividades}
+                    data={this.props.actividades.actividades}
                     renderItem={renderItem}
                     keyExtractor={item => item.id.toString()}
                 />
@@ -72,4 +70,4 @@ class QuienesSomos extends Component {
     }
 }
 
-export default QuienesSomos;
+export default connect(mapStateToProps)(QuienesSomos);

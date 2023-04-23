@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, View } from 'react-native';
 import { Card } from '@rneui/themed';
-import { EXCURSIONES } from '../../Comun/excursiones';
-import { CABECERAS } from '../../Comun/cabeceras';
-import { ACTIVIDADES } from '../../Comun/actividades';
+import { connect } from 'react-redux';
 
 
 function RenderContacto() {
@@ -30,6 +28,14 @@ function RenderContacto() {
 
 }
 
+const mapStateToProps = state => {
+    return {
+        actividades: state.actividades,
+        excursiones: state.excursiones,
+        cabeceras: state.cabeceras
+    }
+}
+
 class Contacto extends Component {
 
     render() {
@@ -37,4 +43,4 @@ class Contacto extends Component {
     }
 }
 
-export default Contacto;
+export default connect(mapStateToProps)(Contacto);
